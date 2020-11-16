@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+    command: npx ts-node src/index.ts
+    ports: 
+      - 9898:9898
+    depends_on:
+      - mongo
+    volumes:
+      - .:/code
+  mongo:
+    image: mongo:4-bionic
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
